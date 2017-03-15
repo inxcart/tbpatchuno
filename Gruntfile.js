@@ -10,6 +10,7 @@ module.exports = function(grunt) {
                     {src: ['controllers/**'], dest: 'tbpatchuno/', filter: 'isFile'},
                     {src: ['classes/**'], dest: 'tbpatchuno/', filter: 'isFile'},
                     {src: ['docs/**'], dest: 'tbpatchuno/', filter: 'isFile'},
+                    {src: ['files/**'], dest: 'tbpatchuno/', filter: 'isFile'},
                     {src: ['override/**'], dest: 'tbpatchuno/', filter: 'isFile'},
                     {src: ['translations/**'], dest: 'tbpatchuno/', filter: 'isFile'},
                     {src: ['upgrade/**'], dest: 'tbpatchuno/', filter: 'isFile'},
