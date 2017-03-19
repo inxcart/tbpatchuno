@@ -447,6 +447,63 @@ class AdminControllerCore extends Controller
     }
 
     /**
+     * thirty bees' new coding style dictates that camelCase should be used
+     * rather than snake_case
+     * These magic methods provide backwards compatibility for modules/themes/whatevers
+     * that still access properties via their snake_case names
+     *
+     * @param string $property Property name
+     *
+     * @return mixed
+     *
+     * @since 1.0.1
+     */
+    public function &__get($property)
+    {
+        // Property to camelCase for backwards compatibility
+        $camelCaseProperty = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $property))));
+        if (property_exists($this, $camelCaseProperty)) {
+            return $this->$camelCaseProperty;
+        }
+
+        return $this->$property;
+    }
+
+    /**
+     * thirty bees' new coding style dictates that camelCase should be used
+     * rather than snake_case
+     * These magic methods provide backwards compatibility for modules/themes/whatevers
+     * that still access properties via their snake_case names
+     *
+     * @param string $property
+     * @param mixed  $value
+     *
+     * @return void
+     *
+     * @since 1.0.1
+     */
+    public function __set($property, $value)
+    {
+        $blacklist = [
+            '_select',
+            '_join',
+            '_where',
+            '_group',
+            '_having',
+            '_conf',
+            '_lang',
+        ];
+
+        // Property to camelCase for backwards compatibility
+        $snakeCaseProperty = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $property))));
+        if (!in_array($property, $blacklist) && property_exists($this, $snakeCaseProperty)) {
+            $this->$snakeCaseProperty = $value;
+        } else {
+            $this->$property = $value;
+        }
+    }
+
+    /**
      * Non-static method which uses AdminController::translate()
      *
      * @param string      $string       Term or expression in english
