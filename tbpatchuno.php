@@ -20,7 +20,7 @@ if (!defined('_TB_VERSION_')) {
 class TbPatchUno extends Module
 {
     public $filesToPatch = [
-        'classes/controller/AdminController.php'      => '70f37c6770eff8fd7208b101a72560b1',
+        'classes/controller/AdminController.php'      => '1260a8d06a58820352076771e18f2e03',
         'controllers/admin/AdminThemesController.php' => '2d5d9f4acb373f8f4c95b585eecf4e54',
     ];
 
@@ -31,7 +31,7 @@ class TbPatchUno extends Module
     {
         $this->name = 'tbpatchuno';
         $this->tab = 'administration';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->author = 'thirty bees';
         $this->need_instance = 0;
 
